@@ -9,6 +9,11 @@ StartupEvents.registry('item', event => {
     event.create('shadow_steel_dust').rarity('epic').displayName("Awakened Omnium Dust").tag('c:dusts').tag('c:dusts/shadow_steel')
 })
 
+StartupEvents.registry('fluid', event => {
+    event.create('hot_shadow_steel')
+    .displayName('Superheated Liquid Omnium').stilltexture('')
+})
+
 StartupEvents.modifyCreativeTab('create:base', event => {
     event.addAfter('create:brass_ingot', 'create:refined_radiance')
     event.addAfter('create:refined_radiance', 'create:shadow_steel')
