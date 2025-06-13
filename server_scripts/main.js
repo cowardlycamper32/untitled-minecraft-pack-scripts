@@ -31,6 +31,19 @@ ServerEvents.recipes(event => {
         }
         return recipe
     }
+    function Ccrushingitem(item, proccessTime, results) {
+        let recipe = {
+            type: 'create:crushing',
+            ingredients: [
+                {
+                    item: item
+                }
+            ],
+            processing_time: proccessTime,
+            results: results
+        }
+        return recipe
+    }
     function sequencedAssembly(inp, loops, result, sequence, transItem) {
         let recipe = {
             type: "create:sequenced_assembly",
@@ -48,7 +61,7 @@ ServerEvents.recipes(event => {
                                                             D: {item: "minecraft:lapis_lazuli"}, E: {item: "mekanism:ingot_tin"}, F: {item: "create:brass_ingot"},
                                                             G: {item: "mekanism:ingot_uranium"}, H: {item: "mekanism:ingot_steel"}, I: {item: "mekanism:ingot_osmium"}}, "create:refined_radiance", 2))
     
-    event.custom(sequencedAssembly('create:shadow_steel_dust', 5, [ { id: 'kubejs:shadow_steel_sheet' }], [
+    event.custom(sequencedAssembly('create:shadow_steel', 5, [ { id: 'kubejs:shadow_steel_sheet' }], [
         {
             "type": "create:pressing",
             "ingredients": [
@@ -65,16 +78,31 @@ ServerEvents.recipes(event => {
 
     ], { id: "kubejs:incomplete_shadow_steel_plate" }))
 
-    event.recipes.powah.energizing(['kubejs:shadow_steel_sheet', 'minecraft:blaze_powder', '#c:dusts/redstone'], 'kubejs:shadow_steel_dust', 500)
+    event.recipes.powah.energizing(['kubejs:shadow_steel_sheet', 'minecraft:blaze_powder', '#c:dusts/redstone'], 'kubejs:shadow_steel_blend_dust', 500)
+    event.custom(Ccrushingitem('create:shadow_steel', 400, [
+        {
+            id: 'kubejs:shadow_steel_dust'
+        },
+        {
+            id: 'create:shadow_steel',
+            chance: 0.5
+        },
+        {
+            id: 'create:experience_nugget',
+            chance: 0.75
+        },
+        {
+            id: 'kubejs:shadow_steel_dust',
+            chance: 0.5
+        }
+    ]))
+
+    event.remove({output: 'create:cinder_flour'})
     
     
 })
 
-RecipeViewerEvents.addEntries('item', event => {
-    event.add('create:refined_radiance');
-    event.add('create:shadow_steel');
-    event.add('kubejs:shadow_steel_sheet')
-})
+
 
 ServerEvents.recipes(event => {
     event.recipes.mekanism.combining('create:shadow_steel', 'create:refined_radiance', "minecraft:netherite_ingot")

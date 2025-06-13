@@ -1,0 +1,17 @@
+remove:
+	stone haunting to infested stone
+add:
+	stone haunting to deepslate
+add:
+	splashing for:
+		Osmium
+		Tin
+		Lead
+		Uranium
+		Zinc
+	Renewable way to get netherite?
+	Mods:
+		HNN
+		gregtech??????? too many items for omnium, maybe post endgame as a final challenge?
+		
+	
