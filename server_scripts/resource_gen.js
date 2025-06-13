@@ -96,7 +96,7 @@ ServerEvents.recipes(event => {
     },
     {
         chance: 0.125,
-        id: 'minecraft:copper_nugget'
+        id: 'create:copper_nugget'
     }
   ]
 })
